@@ -191,7 +191,7 @@
             var res = true;
 
             var _unique = {
-                url: options.url,
+                url: URL.BASE,
                 text:'',
                 ACT: MOD.VALIDATE_AND,
                 params: {

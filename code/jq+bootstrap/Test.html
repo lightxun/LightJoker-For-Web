@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <!--<script src="https://cdn.bootcdn.net/ajax/libs/labjs/2.0.3/LAB.min.js"></script>-->
+    <!--<script>-->
+        <!--$LAB.script("Plugins/jquery/v3.5.0/jquery.js").wait();-->
+        <!--$LAB.script("Plugins/bootstrap-datepicker/v1.9.0/js/bootstrap-datepicker.js").wait();-->
+        <!--$LAB.script("Plugins/bootstrap-datepicker/v1.9.0/locales/bootstrap-datepicker.zh-CN.min.js").wait();-->
+
+    <!--</script>-->
+    <script>
+        function getPagearea(){
+            if (document.compatMode == "BackCompat"){
+                return {
+                    width: Math.max(document.body.scrollWidth,
+                        document.body.clientWidth),
+                    height: Math.max(document.body.scrollHeight,
+                        document.body.clientHeight)
+                }
+            } else {
+                return {
+                    width: Math.max(document.documentElement.scrollWidth,
+                        document.documentElement.clientWidth),
+                    height: Math.max(document.documentElement.scrollHeight,
+                        document.documentElement.clientHeight)
+                }
+            }
+        }
+
+        //alert(JSON.stringify(getPagearea()));
+    </script>
+
+    <script src="Plugins/labjs/v2.0.3/LABjs.js"></script>
+    <script src="Plugins/jquery/v3.5.0/jquery.js"></script>
+    <!--<script src="Plugins/lightJoker/lightJoker.constants.js"></script>-->
+    <!--<script src="Plugins/lightJoker/jquery.lightJoker.common.js"></script>-->
+    <!--<script src="Plugins/lightJoker/jquery.lightJoker.lib.js"></script>-->
+    <!--<script>-->
+        <!--$(function(){-->
+
+            <!--$.when($.lightJokerLib.ajax.post({-->
+                <!--url: 'http://111.44.219.226:60019/lightApi/Common/test',-->
+                <!--success: function(result){-->
+
+                    <!--if(result == 'Success For CommonController')-->
+                        <!--alert('成功');-->
+
+
+                <!--}-->
+            <!--})).done(function(data){-->
+                <!--alert(JSON.stringify(data));-->
+            <!--})-->
+
+
+
+        <!--})-->
+    <!--</script>-->
+    <!--<script>-->
+        <!--(function(w, $) {-->
+            <!--function _showSuccessMsg(msg, opt) {-->
+                <!--alert(msg);-->
+            <!--}-->
+
+            <!--w.bWMsg = {-->
+                <!--showSuccessMsg: _showSuccessMsg-->
+            <!--};-->
+        <!--})(window, jQuery);-->
+
+        <!--bWMsg.showSuccessMsg('ok');-->
+    <!--</script>-->
+    <script>
+        $.extend(jQuery.lightB = {
+            a: function(){
+                alert('a')
+            },
+            c: {
+                d: function(){
+                    alert('d');
+                }
+            }
+        });
+        $.extend(jQuery.lightB, {
+            b: function(){
+                alert('b')
+            }
+        })
+
+        //$.lightB.a();
+        //$.lightB.b();
+
+        $(function(){
+            //eval('$.lightB.a()');
+            $.lightB['c'].d();
+        })
+    </script>
+
+</body>
+</html>

@@ -1,16 +1,16 @@
 /*
     工具类扩展 - daterangepicker
  */
-;$.extend(jQuery.lightJokerLib, {
+;$.extend(jQuery.lightJokerLib.plugin, {
     daterangepicker: {
-        name: 'daterangepicker',
+        version: 'v2.1.27',
         init: function(callback){
             var defaults = {
                 css: [
-                    'Plugins/bootstrap-daterangepicker/v2.1.27/daterangepicker.css'
+                    'Plugins/bootstrap-daterangepicker/' + this.version + '/daterangepicker.css'
                 ],
                 js: [
-                    'Plugins/bootstrap-daterangepicker/v2.1.27/daterangepicker.js'
+                    'Plugins/bootstrap-daterangepicker/' + this.version + '/daterangepicker.js'
                 ]
             }
 

@@ -1,25 +1,50 @@
 /**
  *  Created by LightJoker on 2020-08-28
  */
+
+
 ;$(function(){
 
-    // 全局初始
-    globalInit();
+    // 全局初始 - 各页面引用
+    //globalInit(globalInitCallback);
 });
 
 // 全局初始
-function globalInit(){
-
-    // 设置全局 - 通知条
-    $.lightJokerLib.notice.init();
+function globalInit(callback){
 
     // 设置全局 - loading
-    $.lightJokerLib.loading.init();
+    $.lightJokerLib.loading.init({
+        callback: function(){
+            $.LoadingOverlaySetup({
+                background: "rgba(0, 0, 0, 0.5)",
+                size: 8
+            });
+
+            $.lightJokerLib.loading.show();
+
+            initEnd();
+        }
+    });
+
+    // 设置全局 - 通知条
+    $.lightJokerLib.notice.init({
+        callback: function(){
+            //设置全局配置 - 通知条
+            PNotify.prototype.options.styling = "bootstrap3";
+            PNotify.prototype.options.delay = 5000;
+
+
+            initEnd();
+        }
+    });
 
     // 加载组件 - select
     $.lightJokerLib.select.init({
         callback: function(){
             $.lightJokerLib.select.bind('.lightJoker-select', { serverSide: false });
+
+
+            initEnd();
         }
     });
     // 加载组件 - date
@@ -28,12 +53,27 @@ function globalInit(){
             $.lightJokerLib.date.bindSampleDate('.lightJoker-date');
             $.lightJokerLib.date.bindSampleDateTime('.lightJoker-datetime');
             $.lightJokerLib.date.bindMultipleDate('.lightJoker-date-multiple');
-            $.lightJokerLib.date.bindMultipleDateTime(('.lightJoker-datetime-multiple'));
+            $.lightJokerLib.date.bindMultipleDateTime('.lightJoker-datetime-multiple');
+
+
+            initEnd();
         }
     })
 
     // 实例化 - lightJokerPageScope
     //new $.lightJokerPageScope();
+
+    var initCount = 0;
+    function initEnd(){
+        initCount++;
+
+        if(initCount == 4){
+            $.lightJokerLib.loading.hide();
+
+            if(!isNull(callback))
+                callback();
+        }
+    }
 }
 
 // 获取请求中参数值

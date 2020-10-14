@@ -263,13 +263,8 @@
         // 保存数据
         this.customSaveData = null;
         // 注册事件
-        this.registViewEvent = function(paramExpExcelData, paramCmdEvents, paramBtnEvents){
+        this.registViewEvent = function(paramCmdEvents, paramBtnEvents){
             var pageScope = this;
-
-            // 赋值导出 Excel 数据
-            var expExcelData = [];
-            if(!isNull(paramExpExcelData))
-                expExcelData = paramExpExcelData;
 
             // 拓展操作事件
             var cmdEvents = $.extend(true, {

@@ -3,6 +3,7 @@
     Created by Light on 2020-09-02
  */
 ;jQuery.lightJokerLib = {
+    plugin: {},
     loadPlugin: function(plugin, callback){
         $.each(plugin.css, function(cssIndex, cssObj){
             if($('link[href="' + cssObj + '"]').length > 0){
@@ -53,30 +54,30 @@
 
         $.lightJokerLib.loadPlugin({
             js:[
-                'Plugins/lightJoker/lib/jquery.lightJoker.lib.' + defaults.pluginName
+                'Plugins/lightJoker/plugin/jquery.lightJoker.plugin.' + defaults.pluginName + '.js'
             ]
+        }, function(){
+            $.lightJokerLib.plugin[defaults.pluginName].init(defaults.callback);
         })
-
-        $.lightJokerLib[defaults.pluginName].init(defaults.callback);
     },
     bindPlugin: function(pluginType, element, options){
         if($(element).length == 0){
             console.log(sessionStorage.getItem(pluginType) + ' bind 未找到匹配元素, 停止 : ' + element);
             return;
         }
-        return $.lightJokerLib[sessionStorage.getItem(pluginType)].bind(element, options);
+        return $.lightJokerLib.plugin[sessionStorage.getItem(pluginType)].bind(element, options);
     },
     valuePlugin: function(pluginType, element, value){
-        return $.lightJokerLib[sessionStorage.getItem(pluginType)].value(element, value);
+        return $.lightJokerLib.plugin[sessionStorage.getItem(pluginType)].value(element, value);
     },
     textPlugin: function(pluginType, element){
-        return $.lightJokerLib[sessionStorage.getItem(pluginType)].text(element);
+        return $.lightJokerLib.plugin[sessionStorage.getItem(pluginType)].text(element);
     },
     attrPlugin: function(pluginType, element, attrName){
-        return $.lightJokerLib[sessionStorage.getItem(pluginType)].attr(element, attrName);
+        return $.lightJokerLib.plugin[sessionStorage.getItem(pluginType)].attr(element, attrName);
     },
     destroyPlugin: function(pluginType, element){
-        return $.lightJokerLib[sessionStorage.getItem(pluginType)].destroy(element);
+        return $.lightJokerLib.plugin[sessionStorage.getItem(pluginType)].destroy(element);
     },
     ajax: {
         init: function(options){
@@ -141,12 +142,19 @@
         }
     },
     select: {
+        plugin: {
+            select2: 'select2'
+        },
         init: function(options){
+            var defaults = $.extend(true, {
+                callback: null
+            }, options);
+
             return $.lightJokerLib.initPlugin({
                 pluginType: PLUGIN.SELECT,
-                pluginName: $.lightJokerLib.select2.name,
+                pluginName: $.lightJokerLib.select.plugin.select2,
                 srcFix: '',
-                callback: options.callback
+                callback: defaults.callback
             });
         },
         bind: function(element, options){
@@ -166,12 +174,19 @@
         }
     },
     editSelect: {
+        plugin:{
+            editableSelect: 'editableSelect'
+        },
         init: function(options){
+            var defaults = $.extend(true, {
+                callback: null
+            }, options);
+
             return $.lightJokerLib.initPlugin({
                 pluginType: PLUGIN.EDITSELECT,
-                pluginName: $.lightJokerLib.editableSelect.name,
+                pluginName: $.lightJokerLib.editSelect.plugin.editableSelect,
                 srcFix: '',
-                callback: options.callback
+                callback: defaults.callback
             });
         },
         bind: function(element, options){
@@ -188,140 +203,375 @@
         }
     },
     date: {
+        plugin:{
+            datepicker: 'datepicker',
+            datetimepicker: 'datetimepicker',
+            daterangepicker: 'daterangepicker'
+        },
         init: function(options){
+            var defaults = $.extend(true, {
+                callback: null
+            }, options);
+
             return $.lightJokerLib.initPlugin({
                 pluginType: PLUGIN.DATE,
-                pluginName: $.lightJokerLib.datetimepicker.name,
+                pluginName: $.lightJokerLib.date.plugin.datetimepicker,
                 srcFix: '',
-                callback: options.callback
+                callback: defaults.callback
             });
         },
         bindSampleDate: function(element, options){
             switch(sessionStorage.getItem(PLUGIN.DATE)){
-                case $.lightJokerLib.datetimepicker.name:
-                    return $.lightJokerLib.bindPlugin(PLUGIN.EDITSELECT, element, $.extend(true, {
+                case $.lightJokerLib.date.plugin.datetimepicker:
+                    return $.lightJokerLib.bindPlugin(PLUGIN.DATE, element, $.extend(true, {
                         format: 'YYYY-MM-DD'
                     }, options));
                     break;
                 default:
-                    return $.lightJokerLib.bindPlugin(PLUGIN.EDITSELECT, element, options);
+                    return $.lightJokerLib.bindPlugin(PLUGIN.DATE, element, options);
                     break;
             }
         },
         bindSampleDateTime: function(element, options){
             switch(sessionStorage.getItem(PLUGIN.DATE)){
-                case $.lightJokerLib.datepicker.name:
+                case $.lightJokerLib.date.plugin.datepicker:
                     console.log(' datepicker bindSampleDateTime datetime 不支持 ');
                     break;
                 default:
-                    return $.lightJokerLib.bindPlugin(PLUGIN.EDITSELECT, element, options);
+                    return $.lightJokerLib.bindPlugin(PLUGIN.DATE, element, options);
                     break;
             }
         },
         bindMultipleDate: function(element, options){
             switch(sessionStorage.getItem(PLUGIN.DATE)){
-                case $.lightJokerLib.datetimepicker.name:
+                case $.lightJokerLib.date.plugin.datetimepicker:
                     console.log(' datetimepicker bindMultipleDate multiple 不支持 ');
                     break;
                 default:
-                    return $.lightJokerLib.bindPlugin(PLUGIN.EDITSELECT, element, options);
+                    return $.lightJokerLib.bindPlugin(PLUGIN.DATE, element, options);
                     break;
             }
         },
         bindMultipleDateTime: function(element, options){
             switch(sessionStorage.getItem(PLUGIN.DATE)){
-                case $.lightJokerLib.datepicker.name:
+                case $.lightJokerLib.date.plugin.datepicker:
                     console.log(' datepicker bindMultipleDateTime datetime 不支持 ');
                     break;
-                case $.lightJokerLib.datetimepicker.name:
+                case $.lightJokerLib.date.plugin.datetimepicker:
                     console.log(' datetimepicker bindMultipleDateTime datetime 不支持 ');
                 default:
-                    return $.lightJokerLib.bindPlugin(PLUGIN.EDITSELECT, element, options);
+                    return $.lightJokerLib.bindPlugin(PLUGIN.DATE, element, options);
                     break;
             }
         },
         value: function(element, value){
-            switch(sessionStorage.getItem('datePluginName')){
-                case $.lightJokerLib.daterangepicker.name:
+            switch(sessionStorage.getItem(PLUGIN.DATE)){
+                case $.lightJokerLib.date.plugin.daterangepicker:
                     console.log('daterangepicker value 未实现');
                     break;
                 default:
-                    return $.lightJokerLib.date.valuePlugin(element, value);
+                    return $.lightJokerLib.date.valuePlugin(PLUGIN.DATE, element, value);
                     break;
             }
         }
     },
     messager: {
+        plugin:{
+            layer: 'layer'
+        },
         init: function(options){
+            var defaults = $.extend(true, {
+                callback: null
+            }, options);
 
+            return $.lightJokerLib.initPlugin({
+                pluginType: PLUGIN.MESSAGER,
+                pluginName: $.lightJokerLib.messager.plugin.layer,
+                srcFix: '',
+                callback: defaults.callback
+            });
         },
         info: function(options){
+            var defaults = $.extend(true, {
+                content: '',
+                btnCloseEvent: function() {}
+            }, options);
 
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.MESSAGER)].messager.info(defaults);
         },
         warning: function(options){
+            var defaults = $.extend(true, {
+                content: '',
+                btnCloseEvent: function() {}
+            }, options);
 
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.MESSAGER)].messager.warning(defaults);
         },
         error: function(options){
+            var defaults = $.extend(true, {
+                content: '',
+                area: 'auto',
+                btnCloseEvent: function() {}
+            }, options);
 
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.MESSAGER)].messager.error(defaults);
         },
         success: function(options){
+            var defaults = $.extend(true, {
+                content: '',
+                btnCloseEvent: function() {}
+            }, options);
 
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.MESSAGER)].messager.success(defaults);
         }
     },
-    alter: {
+    alert: {
+        plugin:{
+            layer: 'layer'
+        },
         init: function(options){
+            var defaults = $.extend(true, {
+                callback: null
+            }, options);
 
+            return $.lightJokerLib.initPlugin({
+                pluginType: PLUGIN.ALERT,
+                pluginName: $.lightJokerLib.alert.plugin.layer,
+                srcFix: '',
+                callback: defaults.callback
+            });
         },
         info: function(options){
+            var defaults = $.extend(true, {
+                title: '',
+                content: '',
+                btnOkEvent: function(){ return true; }
+            }, options);
 
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.ALERT)].alert.info(defaults);
         },
         warning: function(options){
+            var defaults = $.extend(true, {
+                title: '',
+                content: '',
+                btnOkEvent: function(){ return true; }
+            }, options);
 
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.ALERT)].alert.warning(defaults);
         },
         error: function(options){
+            var defaults = $.extend(true, {
+                title: '',
+                content: '',
+                btnOkEvent: function(){ return true; }
+            }, options);
 
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.ALERT)].alert.error(defaults);
         },
         success: function(options){
+            var defaults = $.extend(true, {
+                title: '',
+                content: '',
+                btnOkEvent: function(){ return true; }
+            }, options);
 
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.ALERT)].alert.success(defaults);
         }
     },
     notice: {
+        plugin: {
+            pnotify: 'pnotify'
+        },
         init: function(options){
+            var defaults = $.extend(true, {
+                callback: null
+            }, options);
 
+            return $.lightJokerLib.initPlugin({
+                pluginType: PLUGIN.NOTICE,
+                pluginName: $.lightJokerLib.notice.plugin.pnotify,
+                srcFix: '',
+                callback: defaults.callback
+            });
+        },
+        info: function(options){
+            var defaults = $.extend(true, {
+                content: ''
+            }, options);
+
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.NOTICE)].notice.info(defaults);
+        },
+        success: function(options){
+            var defaults = $.extend(true, {
+                content: ''
+            }, options);
+
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.NOTICE)].notice.success(defaults);
+        },
+        error: function(options){
+            var defaults = $.extend(true, {
+                content: ''
+            }, options);
+
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.NOTICE)].notice.error(defaults);
+        },
+        warning: function(options){
+            var defaults = $.extend(true, {
+                content: ''
+            }, options);
+
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.NOTICE)].notice.warning(defaults);
         }
     },
     confirm: {
+        plugin:{
+            layer: 'layer'
+        },
         init: function(options){
+            var defaults = $.extend(true, {
+                callback: null
+            }, options);
 
+            return $.lightJokerLib.initPlugin({
+                pluginType: PLUGIN.CONFIRM,
+                pluginName: $.lightJokerLib.confirm.plugin.layer,
+                srcFix: '',
+                callback: defaults.callback
+            });
+        },
+        show: function(options){
+            var defaults = $.extend(true, {
+                title: '',
+                content: '',
+                btnOkEvent: function(){ return true; },
+                btnCancelEvent: function(){ return true; }
+            }, options);
+
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.CONFIRM)].confirm.show(defaults);
         }
     },
     tip: {
+        plugin:{
+            qTip2: 'qTip2'
+        },
         init: function(options){
+            var defaults = $.extend(true, {
+                callback: null
+            }, options);
 
+            return $.lightJokerLib.initPlugin({
+                pluginType: PLUGIN.TIP,
+                pluginName: $.lightJokerLib.tip.plugin.qTip2,
+                srcFix: '',
+                callback: defaults.callback
+            });
+        },
+        bind: function(element, options){
+            return $.lightJokerLib.bindPlugin(PLUGIN.TIP, element, options);
+        },
+        destroy: function(element){
+            return $.lightJokerLib.destroyPlugin(PLUGIN.TIP, element);
         }
     },
     tab: {
+        plugin: {
+            layer: 'layer'
+        },
         init: function(options){
+            var defaults = $.extend(true, {
+                callback: null
+            }, options);
 
+            return $.lightJokerLib.initPlugin({
+                pluginType: PLUGIN.TAB,
+                pluginName: $.lightJokerLib.tab.plugin.layer,
+                srcFix: '',
+                callback: defaults.callback
+            });
+        },
+        show: function(options){
+            var defaults = $.extend(true, {
+                area: ['55%', 'auto'],
+                tab: [
+                    // {
+                    //     title: '',
+                    //     url: '',
+                    //     content: ''
+                    // }
+                ]
+            }, options);
+
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.TAB)].tab.show(defaults);
+        },
+        close: function(options){
+            var defaults = $.extend(true, {
+
+            }, options);
+
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.TAB)].tab.close(defaults);
         }
     },
     modal: {
+        plugin: {
+            layer: 'layer'
+        },
         init: function(options){
+            var defaults = $.extend(true, {
+                callback: null
+            }, options);
 
+            return $.lightJokerLib.initPlugin({
+                pluginType: PLUGIN.MODAL,
+                pluginName: $.lightJokerLib.modal.plugin.layer,
+                srcFix: '',
+                callback: defaults.callback
+            });
         },
         show: function(options){
+            var defaults = $.extend(true, {
+                title: false,
+                url: '',
+                area: ['55%', 'auto'],
+                content: '',
+                btn: ['保存', '取消'],
+                btnOkEvent: function(index, layerok){ return true; },
+                btnCancelEvent: function(){ return true; },
+                btnCloseEvent: function(){ return true; }
+            }, options);
 
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.MODAL)].modal.show(defaults);
+        },
+        close: function(options){
+            var defaults = $.extend(true, {
+
+            }, options);
+
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.MODAL)].modal.close(defaults);
         }
     },
     loading: {
+        plugin: {
+            loadingoverlay: 'loadingoverlay'
+        },
         init: function(options){
+            var defaults = $.extend(true, {
+                callback: null
+            }, options);
 
+            return $.lightJokerLib.initPlugin({
+                pluginType: PLUGIN.LOADING,
+                pluginName: $.lightJokerLib.loading.plugin.loadingoverlay,
+                srcFix: '',
+                callback: defaults.callback
+            });
         },
         show: function(options){
-
+            var defaults = $.extend(true, {}, options);
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.LOADING)].loading.show(defaults);
         },
         hide: function(options){
-
+            var defaults = $.extend(true, {}, options);
+            return $.lightJokerLib.plugin[sessionStorage.getItem(PLUGIN.LOADING)].loading.hide(defaults);
         }
     },
     scroll: {
@@ -346,35 +596,6 @@
         },
         export: function(options){
 
-        }
-    },
-    layer: {
-        init: function(){
-            var defaults = {
-                pluginName: 'select2',
-                srcFix: '',
-                callback: null
-            }
-            $.extend(true, defaults, options);
-            var plugins = [
-                {
-                    name: 'select2',
-                    css: [
-                        defaults.srcFix + 'Plugins/select2/v4.1.0/select2.min.css'
-                    ],
-                    js: [
-                        defaults.srcFix + 'Plugins/select2/v4.1.0/select2.min.js'
-                    ]
-                }
-            ]
-            sessionStorage.setItem('selectPluginName', defaults.pluginName);
-
-            $.each(plugins, function(pIndex, pObj){
-                if(pObj.name == defaults.pluginName){
-                    $.lightJokerLib.dynamicLoadPlugin(pObj, defaults.callback);
-                    return false;
-                }
-            });
         }
     }
 }

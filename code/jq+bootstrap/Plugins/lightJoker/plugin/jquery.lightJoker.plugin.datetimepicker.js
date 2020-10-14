@@ -1,17 +1,18 @@
 /*
-    工具类扩展 - datepicker
+    工具类扩展 - datetimepicker
  */
-;$.extend(jQuery.lightJokerLib, {
-    datepicker: {
-        name: 'datepicker',
+;$.extend(jQuery.lightJokerLib.plugin, {
+    datetimepicker: {
+        version: 'v4.17.47',
         init: function(callback){
             var defaults = {
                 css: [
-                    'Plugins/bootstrap-datepicker/v1.9.0/css/bootstrap-datepicker.css'
+                    'Plugins/bootstrap-datetimepicker/' + this.version + '/css/bootstrap-datetimepicker.css'
                 ],
                 js: [
-                    'Plugins/bootstrap-datepicker/v1.9.0/js/bootstrap-datepicker.js',
-                    'Plugins/bootstrap-datepicker/v1.9.0/locales/bootstrap-datepicker.zh-CN.min.js'
+                    'Plugins/moment/v2.27.0/moment.js',
+                    'Plugins/moment/v2.27.0/moment-with-locales.js',
+                    'Plugins/bootstrap-datetimepicker/' + this.version + '/js/bootstrap-datetimepicker.min.js'
                 ]
             }
 
@@ -25,16 +26,13 @@
                 var item = $(eObj);
 
                 var defaults = $.extend(true, {
-                    language: 'zh-CN',
-                    clearBtn: true,
-                    container: 'body',
-                    defaultViewDate: new Date(),
-                    startDate: '',
-                    endDate: '',
-                    format: 'yyyy-mm-dd',
-                    minViewMode: 1,
-                    multidate: false,
-                    multidateSeparator: ','
+                    dayViewHeaderFormat: 'YYYY年 MMMM',
+                    format: 'YYYY-MM-DD HH:mm:ss',
+                    locale: 'zh-CN',
+                    showTodayButton: true,
+                    showClear: true,
+                    showClose: true,
+                    date: ''
                 }, options);
 
                 // 只有在 class中写明 lightJoker-empty, 视为 不允许清空
@@ -59,6 +57,6 @@
             }
 
             return dateObj.val();
-        }
+        },
     }
 });

@@ -1,16 +1,16 @@
 /*
     工具类扩展 - select2
  */
-;$.extend(jQuery.lightJokerLib, {
+;$.extend(jQuery.lightJokerLib.plugin, {
     select2: {
-        name: 'select2',
+        version: 'v4.1.0',
         init: function(callback){
             var defaults = {
                 css: [
-                    'Plugins/select2/v4.1.0/select2.min.css'
+                    'Plugins/select2/' + this.version + '/select2.min.css'
                 ],
                 js: [
-                    'Plugins/select2/v4.1.0/select2.min.js'
+                    'Plugins/select2/' + this.version + '/select2.min.js'
                 ]
             }
 
@@ -142,7 +142,7 @@
             return result;
         },
         destroy: function(element){
-            $(element).select2('destroy');
+            return $(element).select2('destroy');
         }
     }
 });

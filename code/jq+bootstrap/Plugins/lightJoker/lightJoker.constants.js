@@ -96,5 +96,13 @@ window.LOG = {
 window.PLUGIN = {
     SELECT: 'selectPlugin',
     EDITSELECT: 'editSelectPlugin',
-    DATE: 'datePlugin'
+    DATE: 'datePlugin',
+    MESSAGER: 'messagerPlugin',
+    ALERT: 'alertPlugin',
+    NOTICE: 'noticePlugin',
+    CONFIRM: 'confirmPlugin',
+    TIP: 'tipPlugin',
+    TAB: 'tabPlugin',
+    MODAL: 'modalPlugin',
+    LOADING: 'loadingPlugin'
 }

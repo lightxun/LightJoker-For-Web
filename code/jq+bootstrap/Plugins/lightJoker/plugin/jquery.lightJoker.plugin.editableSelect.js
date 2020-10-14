@@ -1,16 +1,16 @@
 /*
     工具类扩展 - editSelect
  */
-;$.extend(jQuery.lightJokerLib, {
+;$.extend(jQuery.lightJokerLib.plugin, {
     editableSelect: {
-        name: 'editableSelect',
+        version: 'v2.2.5',
         init: function(callback){
             var defaults = {
                 css: [
-                    'Plugins/jquery-editable-select/v2.2.5/jquery-editable-select.css'
+                    'Plugins/jquery-editable-select/' + this.version + '/jquery-editable-select.css'
                 ],
                 js: [
-                    'Plugins/jquery-editable-select/v2.2.5/jquery-editable-select-lightJoker.js'
+                    'Plugins/jquery-editable-select/' + this.version + '/jquery-editable-select-lightJoker.js'
                 ]
             }
 

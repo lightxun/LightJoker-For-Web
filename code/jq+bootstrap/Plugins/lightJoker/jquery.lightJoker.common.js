@@ -2,7 +2,6 @@
  *  Created by LightJoker on 2020-08-28
  */
 
-
 ;$(function(){
 
     // 全局初始 - 各页面引用
@@ -11,9 +10,11 @@
 
 // 全局初始
 function globalInit(callback){
+    var initCount = 0;
 
-    // 设置全局 - loading
+    // 初始化 - loading
     $.lightJokerLib.loading.init({
+        pluginName: $.lightJokerLib.loading.plugin.loadingoverlay,
         callback: function(){
             $.LoadingOverlaySetup({
                 background: "rgba(0, 0, 0, 0.5)",
@@ -25,9 +26,43 @@ function globalInit(callback){
             initEnd();
         }
     });
+    // 初始化 - select
+    $.lightJokerLib.select.init({
+        pluginName: $.lightJokerLib.select.plugin.select2,
+        callback: function(){
+            if(sessionStorage.getItem(LIGHTJOKERCONST_WEBSETTING.EDITSHOW.KEY) == LIGHTJOKERCONST_WEBSETTING.EDITSHOW.MODAL) {
+                $.lightJokerLib.select.bind('.lightJoker-select', {serverSide: false});
+            }
+            initEnd();
+        }
+    });
+    // 初始化 - editSelect
+    $.lightJokerLib.editSelect.init({
+        pluginName: $.lightJokerLib.editSelect.plugin.editableSelect,
+        callback: function(){
+            if(sessionStorage.getItem(LIGHTJOKERCONST_WEBSETTING.EDITSHOW.KEY) == LIGHTJOKERCONST_WEBSETTING.EDITSHOW.MODAL) {
+                $.lightJokerLib.select.bind('.lightJoker-editSelect', {serverSide: false});
+            }
+            initEnd();
+        }
+    });
+    // 初始化 - date
+    $.lightJokerLib.date.init({
+        pluginName: $.lightJokerLib.date.plugin.datetimepicker,
+        callback: function(){
+            if(sessionStorage.getItem(LIGHTJOKERCONST_WEBSETTING.EDITSHOW.KEY) == LIGHTJOKERCONST_WEBSETTING.EDITSHOW.MODAL) {
+                $.lightJokerLib.date.bindSampleDate('.lightJoker-date');
+                $.lightJokerLib.date.bindSampleDateTime('.lightJoker-datetime');
+                $.lightJokerLib.date.bindMultipleDate('.lightJoker-date-multiple');
+                $.lightJokerLib.date.bindMultipleDateTime('.lightJoker-datetime-multiple');
+            }
 
-    // 设置全局 - 通知条
+            initEnd();
+        }
+    });
+    // 初始化 - notice
     $.lightJokerLib.notice.init({
+        pluginName: $.lightJokerLib.notice.plugin.pnotify,
         callback: function(){
             //设置全局配置 - 通知条
             PNotify.prototype.options.styling = "bootstrap3";
@@ -37,37 +72,67 @@ function globalInit(callback){
             initEnd();
         }
     });
-
-    // 加载组件 - select
-    $.lightJokerLib.select.init({
+    // 初始化 - tip
+    $.lightJokerLib.tip.init({
+        pluginName: $.lightJokerLib.tip.plugin.qTip2,
         callback: function(){
-            $.lightJokerLib.select.bind('.lightJoker-select', { serverSide: false });
-
-
             initEnd();
         }
     });
-    // 加载组件 - date
-    $.lightJokerLib.date.init({
-        callback: function(){
-            $.lightJokerLib.date.bindSampleDate('.lightJoker-date');
-            $.lightJokerLib.date.bindSampleDateTime('.lightJoker-datetime');
-            $.lightJokerLib.date.bindMultipleDate('.lightJoker-date-multiple');
-            $.lightJokerLib.date.bindMultipleDateTime('.lightJoker-datetime-multiple');
-
-
+    // 初始化 messager
+    $.lightJokerLib.messager.init({
+        pluginName: $.lightJokerLib.messager.plugin.layer,
+        callback:function(){
             initEnd();
         }
-    })
+    });
+    // 初始化 alert
+    $.lightJokerLib.alert.init({
+        pluginName: $.lightJokerLib.alert.plugin.layer,
+        callback:function(){
+
+        }
+    });
+
+    // 初始化 - prompt
+    $.lightJokerLib.prompt.init({
+        pluginName: $.lightJokerLib.prompt.plugin.layer,
+        callback: function(){
+
+        }
+    });
+
+    // 初始化 - confirm
+    $.lightJokerLib.confirm.init({
+        pluginName: $.lightJokerLib.confirm.plugin.layer,
+        callback: function(){
+
+        }
+    });
+
+    // 初始化 - tab
+    $.lightJokerLib.tab.init({
+        pluginName: $.lightJokerLib.tab.plugin.layer,
+        callback: function(){
+
+        }
+    });
+    // 初始化 - modal
+    $.lightJokerLib.modal.init({
+        pluginName: $.lightJokerLib.modal.plugin.layer,
+        callback: function(){
+
+        }
+    });
+
 
     // 实例化 - lightJokerPageScope
-    //new $.lightJokerPageScope();
+    new $.lightJokerPageScope();
 
-    var initCount = 0;
     function initEnd(){
         initCount++;
 
-        if(initCount == 4){
+        if(initCount == 7){
             $.lightJokerLib.loading.hide();
 
             if(!isNull(callback))

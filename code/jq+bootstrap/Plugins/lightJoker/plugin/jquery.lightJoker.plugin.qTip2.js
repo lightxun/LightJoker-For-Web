@@ -7,10 +7,10 @@
         init: function(callback){
             var defaults = {
                 css: [
-                    'Plugin/qTip2/' + this.version + '/jquery.qtip.css'
+                    'Plugins/qTip2/' + this.version + '/jquery.qtip.css'
                 ],
                 js: [
-                    'Plugin/qTip2/' + this.version + '/jquery.qtip.js'
+                    'Plugins/qTip2/' + this.version + '/jquery.qtip.js'
                 ]
             }
 

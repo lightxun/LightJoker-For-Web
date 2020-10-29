@@ -2,7 +2,8 @@
  *  Created by Light on 2020-08-28
  */
 // 常量 - 颜色
-window.COLORS = {
+window.LIGHTJOKERCONST_COLOR = {
+    TYPE: 'LightJokerConst_Color',
     RED: 'rgb(255, 99, 132)',
     ORANGE: 'rgb(255, 159, 64)',
     YELLOW: 'rgb(255, 205, 86)',
@@ -18,8 +19,9 @@ window.COLORS = {
     LIGHT_RED: '#996666'
 }
 // 常量 - Web设置
-window.WEBSETTINGS = {
-    SPEAKSWITCH: 'SpeakSwitch',
+window.LIGHTJOKERCONST_WEBSETTING = {
+    TYPE: 'LightJokerConst_WebSetting',
+    SPEECHSWITCH: 'SpeechSwitch',
     NUMBERMASK: '#,##0.00',
     EDITSHOW: {
         KEY: 'EditShow',
@@ -28,7 +30,8 @@ window.WEBSETTINGS = {
     }
 }
 // 常量 - SignalR
-window.SIGNALRS = {
+window.LIGHTJOKERCONST_SIGNALR = {
+    TYPE: 'LightJokerConst_SignalR',
     MAIN: 'SignalR_Main',
     HOME: 'SignalR_Home',
     TEST: {
@@ -36,14 +39,16 @@ window.SIGNALRS = {
     }
 }
 // 常量 - 标识
-window.SIGNS = {
+window.LIGHTJOKERCONST_SIGN = {
+    TYPE: 'LightJokerConst_Sign',
     FAILD: '0',
     SUCCESS: '1',
     REPEAT: '2',
     CONFLICT: '3'
 }
 // 常量 - 操作符
-window.MODS = {
+window.LIGHTJOKERCONST_MOD = {
+    TYPE: 'LightJokerConst_Mod',
     ACT: 'ACT',
     EMPTY: 'EMPTY',
     CREATE: 'C',
@@ -65,20 +70,26 @@ window.MODS = {
     VALIDATE_OR: 'VO',
     EXPORT_XLS: 'EXP_XLS',
     EXPORT_PROCQ_XLS: 'EXP_PQ_XLS',
-    EXPORT_PROCQ_FOOT_XLS: 'EXP_PQF_XLS'
+    EXPORT_PROCQ_FOOT_XLS: 'EXP_PQF_XLS',
+    EQUAL: '[Equal',
+    OR: ']Or'
 }
 // 常量 - Session
-window.SESSIONS = {
+window.LIGHTJOKERCONST_SESSION = {
+    TYPE: 'LightJokerConst_Session',
     USERNAME: 'UserName',
     USERCODE: 'UserCode',
     USERDATAID: 'UserDataID'
 }
 // 常量 - Url
-window.URL = {
-    SERVICE: ''
+window.LIGHTJOKERCONST_URL = {
+    TYPE: 'LightJokerConst_Url',
+    SERVICE: '',
+    SIGNALR: ''
 }
 // 常量 - System
-window.SYSTEM = {
+window.LIGHTJOKERCONST_SYSTEM = {
+    TYPE: 'LightJokerConst_System',
     DATABASE: '',
     INFOCODE: {
         ROOT: '',
@@ -86,23 +97,27 @@ window.SYSTEM = {
     }
 }
 // 常量 - Log
-window.LOG = {
+window.LIGHTJOKERCONST_LOG = {
+    TYPE: 'LightJokerConst_Log',
     ISLOG: 'logIsLog',
     ISINFO: 'logIsInfo',
     ISWARN: 'logIsWarn',
     ISERROR: 'logIsError'
 }
 // 常量 - Plugin
-window.PLUGIN = {
+window.LIGHTJOKERCONST_PLUGIN = {
+    TYPE: 'LightJokerConst_Plugin',
     SELECT: 'selectPlugin',
     EDITSELECT: 'editSelectPlugin',
     DATE: 'datePlugin',
     MESSAGER: 'messagerPlugin',
     ALERT: 'alertPlugin',
     NOTICE: 'noticePlugin',
+    PROMPT: 'promptPlugin',
     CONFIRM: 'confirmPlugin',
     TIP: 'tipPlugin',
     TAB: 'tabPlugin',
     MODAL: 'modalPlugin',
-    LOADING: 'loadingPlugin'
+    LOADING: 'loadingPlugin',
+    DATAFORM: 'dataFormPlugin'
 }

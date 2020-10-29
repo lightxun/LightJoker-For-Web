@@ -2,9 +2,171 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- 认为好的设计是不需要用户去操作窗口缩放的 -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- 如果你的网站不想被剥去外衣、往赤裸的身体上贴广告 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>系统主页</title>
+    <!-- 图标 -->
+    <link rel="shortcut icon" href="">
+
+    <!-- 基础 -->
+    <link rel="stylesheet" href="../../Plugins/bootstrap/v3.4.1/css/bootstrap-light.css">
+    <link rel="stylesheet" href="../../Plugins/font-awesome/v4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../Plugins/animate/v3.7.2/animate.css">
+
+    <!-- 框架 -->
+    <link rel="stylesheet" href="v2.4.18/css/AdminLTE.css">
+    <link rel="stylesheet" href="v2.4.18/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="../../Plugins/jquery-scrollbar/v0.2.11/jquery.scrollbar.css">
+    <link rel="stylesheet" href="../../Plugins/bootstrap-nth-tabs/v2.0.0/css/nth-tabs.css">
+    <link rel="stylesheet" href="../../Plugins/bootstrap-nth-tabs/v2.0.0/css/nth-icons.css">
+
+    <!-- lightJoker - css -->
+    <link rel="stylesheet" href="skin-lightJoker-AdminLTE.css">
+    <link rel="stylesheet" href="../../Statics/Css/skin-lightJoker.css">
+
+    <!-- 基础 -->
+    <script src="../../Plugins/labjs/v2.0.3/LABjs.js"></script>
+    <script src="../../Plugins/jquery/v3.5.0/jquery.min.js"></script>
+    <script src="../../Plugins/bootstrap/v3.4.1/js/bootstrap-light.js"></script>
+    <script src="../../Plugins/jquery-scrollbar/v0.2.11/jquery.scrollbar.js"></script>
+    <script src="../../Plugins/bootstrap-nth-tabs/v2.0.0/js/nth-tabs-light.js"></script>
+
+    <!-- 框架 -->
+    <script src="v2.4.18/js/adminlte.js"></script>
+
+    <!-- lightJoker - js -->
+    <script src="../../Plugins/lightJoker/lightJoker.constants.js"></script>
+    <script src="../../Plugins/lightJoker/jquery.lightJoker.common.js"></script>
+    <script src="../../Plugins/lightJoker/jquery.lightJoker.lib.js"></script>
+    <script src="../../Plugins/lightJoker/lightJoker.log.js"></script>
+    <script src="../../Plugins/lightJoker/jquery.lightJoker.pageScope.js"></script>
+    <script src="../../Plugins/lightJoker/jquery.lightJoker.dataForm.js"></script>
+    <script src="v2.4.18/js/Main-Iframe.js"></script>
 </head>
-<body>
+<body class="hold-transition skin-yellow sidebar-mini fixed skin-lightJoker">
+    <div id="light-signalRObj"></div>
+    <div class="wrapper main-wrapper">
+        <header class="main-header">
+            <a href="javascript:;" class="logo">
+                <span class="logo-mini"><b>LJ</b></span>
+                <span class="logo-lg"><b><span><img src="../../Statics/Images/logo_small.png" /></span> 系统名称</b></span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <div class="navbar-content">
+                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="nth-tabs" id="main-nth-tabs"></div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown tasks-menu">
+                                <a href="#" class="speech" id="btnSpeech">
+                                    <i class="fa fa-volume-up"></i>
+                                </a>
+                            </li>
+                            <li class="dropdown user user-menu" style="width: 139px;">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;height:40px;">
+                                    <img src="../../Statics/Images/user.png" class="user-image" alt="User Image">
+                                    <span class="hidden-xs titleUserName">User Name</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="user-header">
+                                        <img src="../../Statics/Images/avatar5.png" class="img-circle" alt="User Image">
+                                        <p>
+                                            Light - Full Stack Developer
+                                            <small>Member since Nov. 2010</small>
+                                        </p>
+                                    </li>
+                                    <li class="user-body">
+                                        <div class="row">
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Followers</a>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Sales</a>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Friends</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" role="button" id="btnPageRefresh"><i class="fa fa-refresh fa-spin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <div class="sidebar-header">
+                    <div class="info" style="border-right: 1px solid #5f5e5e">
+                        <a href="#" id="btnChangePWD"><i class="fa fa-lock"></i> 修改密码</a>
+                    </div>
+                    <div class="info">
+                        <a href="#" id="btnLogout"><i class="fa fa-sign-out"></i> 注销</a>
+                    </div>
+                </div>
+
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">功能列表</li>
+                    <li power="cd-zy">
+                        <a href="#" ref="Home.html">
+                            <i class="fa fa-circle-o text-red"></i> <span>主页</span>
+                        </a>
+                    </li>
+                    <li class="treeview" power="cd-xtgl">
+                        <a href="#">
+                            <i class="fa fa-circle-o"></i> <span>系统管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li power="xtgl-xtsz"><a href="#" ref="Standard/View.html?path=LJ00001/LJ00001View.html"><i class="fa fa-circle-o"></i> 系统设置</a></li>
+                            <li power="xtgl-jgsz"><a href="#" ref="Standard/View.html?path=LJ00001/LJ00001_AView.html"><i class="fa fa-circle-o"></i> 机构设置</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> RFID 设置</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> 班组设置</a></li>
+                            <li power="xtgl-yhsz"><a href="#" ref="Standard/View.html?path=LJ00101/LJ00101View.html"><i class="fa fa-circle-o"></i> 用户设置</a></li>
+                            <li power="xtgl-jssz"><a href="#" ref="Standard/View.html?path=LJ00106/LJ00106View.html"><i class="fa fa-circle-o"></i> 角色设置</a></li>
+                            <li power="xtgl-cdsz"><a href="#" ref="Standard/View.html?path=LJ00107/LJ00107View.html"><i class="fa fa-circle-o"></i> 菜单设置</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+        <div class="content-wrapper">
+            <!-- 主内容 -->
+            <section class="content tab-content" id="main-nth-tabs-content">
+
+            </section>
+            <!-- /.主内容 -->
+        </div>
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> <span class="versionCode"></span>
+            </div>
+            <strong>Copyright &copy; 2020 <a href="javascript:;" target="_blank">Light</a>.</strong> All rights
+            reserved.
+        </footer>
+    </div>
 
 </body>
 </html>

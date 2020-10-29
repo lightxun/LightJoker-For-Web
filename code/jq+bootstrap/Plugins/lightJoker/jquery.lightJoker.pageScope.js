@@ -2,37 +2,74 @@
     Created by LightJoker on 2020-09-02
  */
 ;(function($){
+
+    // 成员里 var 表示私有, this 表示公有, 无任何修饰表示实例化后才有效的变量和方法
+    //$.Demo = function (arg) {
+
+        //instanceArr = '实例化后有效的变量';    //实例化后直接调用, 相当于外部变量的赋值
+        //var privateArr = '私有变量';
+        //this.publicArr = '公有变量';
+
+        // 实例化后有效的方法
+        //instanceFun = function () {
+        //    alert(instanceArr);
+        //    //实例化后直接调用, 相当于外部方法的重写 : instanceFun();
+        //}
+
+        // 私有方法
+        //var privateFun = function () {
+        //    alert(privateArr);
+        //}
+
+        // 公有方法
+        //this.publicFun = function () {
+        //    alert(this.publicArr);
+        //}
+
+        // 调用私有方法
+        //this.callPrivate = function () {
+        //    privateFun();
+        //}
+    //}
+
+    //$(function () {
+    //    var a = new $.classA({});
+    //    alert(instanceAttr);            // 正常
+    //    alert(a.instanceAttr);         //  undefined
+    //    instanceFun();                  //  正常
+    //    a.instanceFun();               //  报错
+    //    alert(privateAttr);             //  报错
+    //    alert(a.privateAttr);          //   undefined
+    //    privateFun();                   //   报错
+    //    a.privateFun();                //   报错
+    //});
+
+
     $.lightJokerPageScope = function(param){
         /// 实例化变量 - 没有修饰符 变量名, 实例化后直接调用, 相当于外部变量
-        lightJokerPageScope = this;
+        window.$.lightJokerPageScope = this;
         /// 私有变量 - var 变量名
         //
         /// 公有变量 - this.变量名
-        // 数据表格
-        this.dataTable = null;
-        this.api_dataTable = null;
-        // 表单
-        this.form = null;
-        this.api_form = null;
         // 查询条件
-        this.queryCondition = null;
-        this.queryParamName = null;
-        this.queryParamValue = null;
+        this.lightJokerQueryCondition = null;
+        this.lightJokerQueryParamName = null;
+        this.lightJokerQueryParamValue = null;
         // 按钮
-        this.btnCondition = null;
-        this.btnAdd = null;
-        this.btnEdit = null;
-        this.btnDelete = null;
-        this.btnRead = null;
-        this.btnExpExcel = null;
-        this.btnSave = null;
-        this.btnQuery = null;
-        this.btnClose = null;
-        this.btnPrint = null;
+        this.lightJokerBtnCondition = null;
+        this.lightJokerBtnAdd = null;
+        this.lightJokerBtnEdit = null;
+        this.lightJokerBtnDelete = null;
+        this.lightJokerBtnRead = null;
+        this.lightJokerBtnExpExcel = null;
+        this.lightJokerBtnSave = null;
+        this.lightJokerBtnQuery = null;
+        this.lightJokerBtnClose = null;
+        this.lightJokerBtnPrint = null;
         // 按钮组
-        this.btnGroupCmd = null;
-        this.btnGroupQuery = null;
-        this.btnGroupAnn = null;
+        this.lightJokerBtnGroupCmd = null;
+        this.lightJokerBtnGroupQuery = null;
+        this.lightJokerBtnGroupAnn = null;
         // 界面
         this.lightJokerContentView = null;
         this.lightJokerContentViewHeader = null;
@@ -41,7 +78,7 @@
         this.lightJokerContentEditHeader = null;
         this.lightJokerContentEditBody = null;
         // 参数
-        this.ACT = MODS.EMPTY;
+        this.ACT = LIGHTJOKERCONST_MOD.EMPTY;
         this.data = null;
         this.isMonitorAjax = true;
         this.modalIndex = -1;
@@ -63,23 +100,22 @@
 
             // 拓展参数
             var defaults = $.extend(true, {
-                dataTable: $('#dataTable'),
-                queryCondition: $('#queryCondition'),
-                queryParamName: $('#queryParamName'),
-                queryParamValue: $('#queryParamValue'),
-                btnCondition: $('#btnCondition'),
-                btnAdd: $('#btnAdd'),
-                btnEdit: $('#btnEdit'),
-                btnDelete: $('#btnDelete'),
-                btnRead: $('#btnRead'),
-                btnExpExcel: $('#btnExpExcel'),
-                btnSave: $('#btnSave'),
-                btnQuery: $('#btnQuery'),
-                btnClose: $('#btnClose'),
-                btnPrint: $('#btnPrint'),
-                btnGroupCmd: $('.btn-group-cmd'),
-                btnGroupQuery: $('.btn-group-query'),
-                btnGroupAnn: $('.btn-group-ann'),
+                lightJokerQueryCondition: $('#lightJoker-queryCondition'),
+                lightJokerQueryParamName: $('#lightJoker-queryParamName'),
+                lightJokerQueryParamValue: $('#lightJoker-queryParamValue'),
+                lightJokerBtnCondition: $('#lightJoker-btnCondition'),
+                lightJokerBtnAdd: $('#lightJoker-btnAdd'),
+                lightJokerBtnEdit: $('#lightJoker-btnEdit'),
+                lightJokerBtnDelete: $('#lightJoker-btnDelete'),
+                lightJokerBtnRead: $('#lightJoker-btnRead'),
+                lightJokerBtnExpExcel: $('#lightJoker-btnExpExcel'),
+                lightJokerBtnSave: $('#lightJoker-btnSave'),
+                lightJokerBtnQuery: $('#lightJoker-btnQuery'),
+                lightJokerBtnClose: $('#lightJoker-btnClose'),
+                lightJokerBtnPrint: $('#lightJoker-btnPrint'),
+                lightJokerBtnGroupCmd: $('.lightJoker-btn-group-cmd'),
+                lightJokerBtnGroupQuery: $('.lightJoker-btn-group-query'),
+                lightJokerBtnGroupAnn: $('.lightJoker-btn-group-ann'),
                 lightJokerContentView: $('.lightJokerContent-view'),
                 lightJokerContentViewHeader: $('.lightJokerContent-view-header'),
                 lightJokerContentViewBody: $('.lightJokerContent-view-body'),
@@ -96,7 +132,7 @@
             }, settings);
 
             // 执行加载前方法
-            if(defaults.beforeLoadCallback()){
+            if(!defaults.beforeLoadCallback()){
                 return;
             }
 
@@ -113,42 +149,44 @@
             });
 
             // 赋值
-            this.dataTable = defaults.dataTable;
-            this.queryCondition = defaults.queryCondition;
-            this.queryParamName = defaults.queryParamName;
-            this.queryParamValue = defaults.queryParamValue;
-            this.btnCondition = defaults.btnCondition;
-            this.btnAdd = defaults.btnAdd;
-            this.btnEdit = defaults.btnEdit;
-            this.btnDelete = defaults.btnDelete;
-            this.btnRead = defaults.btnRead;
-            this.btnExpExcel = defaults.btnExpExcel;
-            this.btnSave = defaults.btnSave;
-            this.btnQuery = defaults.btnQuery;
-            this.btnClose = defaults.btnClose;
-            this.btnPrint = defaults.btnPrint;
-            this.btnGroupCmd = defaults.btnGroupCmd;
-            this.btnGroupQuery = defaults.btnGroupQuery;
-            this.btnGroupAnn = defaults.btnGroupAnn;
-            this.lightJokerContentView = defaults.lightJokerContentView;
-            this.lightJokerContentViewHeader = defaults.lightJokerContentViewHeader;
-            this.lightJokerContentViewBody = defaults.lightJokerContentViewBody;
-            this.lightJokerContentEdit = defaults.lightJokerContentEdit;
-            this.lightJokerContentEditHeader = defaults.lightJokerContentEditHeader;
-            this.lightJokerContentEditBody = defaults.lightJokerContentEditBody;
+            pageScope.lightJokerQueryCondition = defaults.lightJokerQueryCondition;
+            pageScope.lightJokerQueryParamName = defaults.lightJokerQueryParamName;
+            pageScope.lightJokerQueryParamValue = defaults.lightJokerQueryParamValue;
+            pageScope.lightJokerBtnCondition = defaults.lightJokerBtnCondition;
+            pageScope.lightJokerBtnAdd = defaults.lightJokerBtnAdd;
+            pageScope.lightJokerBtnEdit = defaults.lightJokerBtnEdit;
+            pageScope.lightJokerBtnDelete = defaults.lightJokerBtnDelete;
+            pageScope.lightJokerBtnRead = defaults.lightJokerBtnRead;
+            pageScope.lightJokerBtnExpExcel = defaults.lightJokerBtnExpExcel;
+            pageScope.lightJokerBtnSave = defaults.lightJokerBtnSave;
+            pageScope.lightJokerBtnQuery = defaults.lightJokerBtnQuery;
+            pageScope.lightJokerBtnClose = defaults.lightJokerBtnClose;
+            pageScope.lightJokerBtnPrint = defaults.lightJokerBtnPrint;
+            pageScope.lightJokerBtnGroupCmd = defaults.lightJokerBtnGroupCmd;
+            pageScope.lightJokerBtnGroupQuery = defaults.lightJokerBtnGroupQuery;
+            pageScope.lightJokerBtnGroupAnn = defaults.lightJokerBtnGroupAnn;
+            pageScope.lightJokerContentView = defaults.lightJokerContentView;
+            pageScope.lightJokerContentViewHeader = defaults.lightJokerContentViewHeader;
+            pageScope.lightJokerContentViewBody = defaults.lightJokerContentViewBody;
+            pageScope.lightJokerContentEdit = defaults.lightJokerContentEdit;
+            pageScope.lightJokerContentEditHeader = defaults.lightJokerContentEditHeader;
+            pageScope.lightJokerContentEditBody = defaults.lightJokerContentEditBody;
 
-            // 加载自定义组件
-            $.lightJokerLib.select.bindLocal(defaults.lightJokerContentView_lightJokerSelect);
-            $.lightJokerLib.date.bindSampleDate(defaults.lightJokerContentView_lightJokerDate);
-            $.lightJokerLib.date.bindSampleDateTime(defaults.lightJokerContentView_lightJokerDateTime);
-            $.lightJokerLib.date.bindMultipleDate(defaults.lightJokerContentView_lightJokerDateMultiple);
-            $.lightJokerLib.date.bindMultipleDateTime(defaults.lightJokerContentView_lightJokerDateTimeMultiple);
+            // 加载自定义组件 - 放置 common-global 中
+            if(sessionStorage.getItem(LIGHTJOKERCONST_WEBSETTING.EDITSHOW.KEY) == LIGHTJOKERCONST_WEBSETTING.EDITSHOW.DIV){
+                $.lightJokerLib.select.bind(defaults.lightJokerContentView_lightJokerSelect);
+                $.lightJokerLib.date.bindSampleDate(defaults.lightJokerContentView_lightJokerDate);
+                $.lightJokerLib.date.bindSampleDateTime(defaults.lightJokerContentView_lightJokerDateTime);
+                $.lightJokerLib.date.bindMultipleDate(defaults.lightJokerContentView_lightJokerDateMultiple);
+                $.lightJokerLib.date.bindMultipleDateTime(defaults.lightJokerContentView_lightJokerDateTimeMultiple);
+            }
+
 
             // 取消所有 input 的 autocomplete, 指定显示除外
             $('input:not([autocomplete]),textarea:not([autocomplete]),select:not([autocomplete])').attr('autocomplete', 'off');
 
             // 展示样式为 div 时
-            if(sessionStorage.getItem(WEBSETTINGS.EDITSHOW.KEY) == WEBSETTINGS.EDITSHOW.DIV){
+            if(sessionStorage.getItem(LIGHTJOKERCONST_WEBSETTING.EDITSHOW.KEY) == LIGHTJOKERCONST_WEBSETTING.EDITSHOW.DIV){
                 $.lightJokerLib.loading.show();
 
                 var viewHeight = defaults.lightJokerContentViewHeader.outerHeight() + 20 + 30;
@@ -185,7 +223,6 @@
 
             // 扩展参数
             var defaults = $.extend(true, {
-                form: $('#form'),
                 lightJokerContentEditBodyContent_lightJokerSelect: $('.lightJokerContent-edit-body-content .lightJoker-select'),
                 lightJokerContentEditBodyContent_lightJokerDate: $('.lightJokerContent-edit-body-content .lightJoker-date'),
                 lightJokerContentEditBodyContent_lightJokerDateTime: $('.lightJokerContent-edit-body-content .lightJoker-datetime'),
@@ -196,16 +233,25 @@
             }, settings);
 
             // 执行加载前方法
-            if(defaults.beforeLoadCallback()){
+            if(!defaults.beforeLoadCallback()){
                 return;
             }
 
+            // 赋值
+            pageScope.lightJokerContentEditBodyContent_lightJokerSelect = defaults.lightJokerContentEditBodyContent_lightJokerSelect;
+            pageScope.lightJokerContentEditBodyContent_lightJokerDate = defaults.lightJokerContentEditBodyContent_lightJokerDate;
+            pageScope.lightJokerContentEditBodyContent_lightJokerDateTime = defaults.lightJokerContentEditBodyContent_lightJokerDateTime;
+            pageScope.lightJokerContentEditBodyContent_lightJokerDateMultiple = defaults.lightJokerContentEditBodyContent_lightJokerDateMultiple;
+            pageScope.lightJokerContentEditBodyContent_lightJokerDateTimeMultiple = defaults.lightJokerContentEditBodyContent_lightJokerDateTimeMultiple;
+
             // 加载自定义组件 - 放置 common-global 中
-            //$.lightJokerLib.select.bindLocal(defaults.lightJokerContentView_lightJokerSelect);
-            //$.lightJokerLib.date.bindSampleDate(defaults.lightJokerContentView_lightJokerDate);
-            //$.lightJokerLib.date.bindSampleDateTime(defaults.lightJokerContentView_lightJokerDateTime);
-            //$.lightJokerLib.date.bindMultipleDate(defaults.lightJokerContentView_lightJokerDateMultiple);
-            //$.lightJokerLib.date.bindMultipleDateTime(defaults.lightJokerContentView_lightJokerDateTimeMultiple);
+            if(sessionStorage.getItem(LIGHTJOKERCONST_WEBSETTING.EDITSHOW.KEY) == LIGHTJOKERCONST_WEBSETTING.EDITSHOW.DIV){
+                $.lightJokerLib.select.bind(defaults.lightJokerContentEditBodyContent_lightJokerSelect);
+                $.lightJokerLib.date.bindSampleDate(defaults.lightJokerContentEditBodyContent_lightJokerDate);
+                $.lightJokerLib.date.bindSampleDateTime(defaults.lightJokerContentEditBodyContent_lightJokerDateTime);
+                $.lightJokerLib.date.bindMultipleDate(defaults.lightJokerContentEditBodyContent_lightJokerDateMultiple);
+                $.lightJokerLib.date.bindMultipleDateTime(defaults.lightJokerContentEditBodyContent_lightJokerDateTimeMultiple);
+            }
 
             // 取消所有 input 的 autocomplete, 指定显示除外
             $('input:not([autocomplete]),textarea:not([autocomplete]),select:not([autocomplete])').attr('autocomplete', 'off');
@@ -219,15 +265,15 @@
         this.customDestroyEdit = null;
         // 关闭 Edit 页
         this.closeEdit = function(beforeCloseEvent){
-            pageScope = this;
+            var pageScope = this;
 
             if(!isNull(beforeCloseEvent) && beforeCloseEvent())
                 return;
 
-            pageScope.btnSave.show();
+            pageScope.lightJokerBtnSave.show();
             pageScope.data = null;
 
-            if(sessionStorage.getItem(WEBSETTINGS.EDITSHOW.KEY) == WEBSETTINGS.EDITSHOW.DIV){
+            if(sessionStorage.getItem(LIGHTJOKERCONST_WEBSETTING.EDITSHOW.KEY) == LIGHTJOKERCONST_WEBSETTING.EDITSHOW.DIV){
                 if(pageScope.lightJokerContentView.is('.' + pageScope.pageHideAnimate)){
                     pageScope.lightJokerContentEdit.removeClass(pageScope.pageShowAnimate).addClass(pageScope.pageHideAnimate);
                     setTimeout(function(){
@@ -241,7 +287,7 @@
         this.customExtendQueryParam = function(){ return {} };
         // 查询数据
         this.queryData = function(options){
-            pageScope = this;
+            var pageScope = this;
 
             var defaults = $.extend(true, {
                 resetPaging: true,
@@ -251,14 +297,14 @@
             }, options);
 
             // 收集默认查询条件
-            if(!isNull(pageScope.queryParamValue.val())){
-                $.extend(true, defaults.params, eval('({' + pageScope.queryParamName.val() + ' : ' + pageScope.queryParamValue.val() + '})'));
+            if(!isNull(pageScope.lightJokerQueryParamValue.val())){
+                $.extend(true, defaults.params, eval('({' + pageScope.lightJokerQueryParamName.val() + ' : ' + pageScope.lightJokerQueryParamValue.val() + '})'));
             }
 
             // 查询条件拓展
             $.extend(true, defaults.params, pageScope.customExtendQueryParam());
 
-            pageScope.api_dataTable.reload(defaults);
+            pageScope.api_lightJokerDataTable.reload(defaults);
         };
         // 保存数据
         this.customSaveData = null;
@@ -284,13 +330,13 @@
             var btnEvents = $.extend(true, {
                 // 条件按钮事件
                 btnConditionEvent: function(){
-                    pageScope.queryCondition.toggle('fast');
+                    pageScope.lightJokerQueryCondition.toggle('fast');
                 },
                 // 查询按钮事件
                 btnQueryEvent: function(){
                     pageScope.queryData();
                     // 语音播报
-                    $.lightJokerlib.speech.speak({ text: lightJokerLanguage });
+                    $.lightJokerLib.speech.speak({ text: lightJokerLanguage });
                 },
                 // 添加按钮事件
                 btnAddEvent: function(){
@@ -338,7 +384,7 @@
                 // 编辑按钮事件
                 btnEditEvent: function(){
                     // 获取选中数据
-                    pageScope.data = pageScope.api_dataTable.selectedSimpleData();
+                    pageScope.data = pageScope.api_lightJokerDataTable.selectedSimpleData();
 
                     if(isNull(pageScope.data)){
                         $.lightJokerLib.messager.warning({ content: lightJokerLanguage });
@@ -367,7 +413,7 @@
                     }else if(sessionStorage.getItem(WEBSETTINGS.EDITSHOW.KEY) == WEBSETTINGS.EDITSHOW.MODAL){
                         pageScope.modalIndex = $.lightJokerLib.modal.show({
                             url: pageScope.customUrl_edit,
-                            title: pageScope.btnEdit.text(),
+                            title: pageScope.lightJokerBtnEdit.text(),
                             area: pageScope.modalArea,
                             btnOkEvent: function(){
                                 var result = false;
@@ -404,7 +450,7 @@
                 // 只读按钮事件
                 btnReadEvent: function(){
                     // 获取选中数据
-                    pageScope.data = pageScope.api_dataTable.selectedSimpleData();
+                    pageScope.data = pageScope.api_lightJokerDataTable.selectedSimpleData();
 
                     if(isNull(pageScope.data)){
                         $.lightJokerLib.messager.warning({ content: lightJokerLanguage });
@@ -414,7 +460,7 @@
                     if(!cmdEvents.beforeReadEvent(pageScope.data))
                         return;
 
-                    pageScope.btnSave.hide();
+                    pageScope.lightJokerBtnSave.hide();
                     pageScope.ACT = MODS.READ;
 
                     if(sessionStorage.getItem(WEBSETTINGS.EDITSHOW.KEY) == WEBSETTINGS.EDITSHOW.DIV){
@@ -434,7 +480,7 @@
                     }else if(sessionStorage.getItem(WEBSETTINGS.EDITSHOW.KEY) == WEBSETTINGS.EDITSHOW.MODAL){
                         pageScope.modalIndex = $.lightJokerLib.modal.show({
                             url: pageScope.customUrl_read,
-                            title: pageScope.btnRead.text(),
+                            title: pageScope.lightJokerBtnRead.text(),
                             area: pageScope.modalArea,
                             btnCloseEvent: function(){
                                 cmdEvents.afterReadEvent(pageScope.data);
@@ -445,7 +491,7 @@
                 },
                 // 删除按钮事件
                 btnDeleteEvent: function(){
-                    pageScope.data = pageScope.api_dataTable.selectedSimpleData();
+                    pageScope.data = pageScope.api_lightJokerDataTable.selectedSimpleData();
 
                     if(isNull(pageScope.data)){
                         $.lightJokerLib.messager.warning({ content: lightJokerLanguage });
@@ -478,7 +524,7 @@
                 btnPrintEvent: function(){
                     pageScope.modalIndex = $.lightJokerLib.modal.show({
                         url: pageScope.customUrl_print,
-                        title: pageScope.btnPrint.text(),
+                        title: pageScope.lightJokerBtnPrint.text(),
                         area: pageScope.modalArea,
                         btnCloseEvent: function(){
                             return pageScope.closeEdit(cmdEvents.beforeCloseEvent);
@@ -489,45 +535,45 @@
 
 
             /// 绑定按钮事件
-            if(!isNull(pageScope.btnCondition)){
-                pageScope.btnCondition.unbind('click');
-                pageScope.btnCondition.on('click', btnEvents.btnConditionEvent);
+            if(!isNull(pageScope.lightJokerBtnCondition)){
+                pageScope.lightJokerBtnCondition.unbind('click');
+                pageScope.lightJokerBtnCondition.on('click', btnEvents.btnConditionEvent);
             }
-            if(!isNull(pageScope.btnQuery)){
-                pageScope.btnQuery.unbind('click');
-                pageScope.btnQuery.on('click', btnEvents.btnQueryEvent);
+            if(!isNull(pageScope.lightJokerBtnQuery)){
+                pageScope.lightJokerBtnQuery.unbind('click');
+                pageScope.lightJokerBtnQuery.on('click', btnEvents.btnQueryEvent);
             }
-            if(!isNull(pageScope.btnAdd)){
-                pageScope.btnAdd.unbind('click');
-                pageScope.btnAdd.on('click', btnEvents.btnAddEvent);
+            if(!isNull(pageScope.lightJokerBtnAdd)){
+                pageScope.lightJokerBtnAdd.unbind('click');
+                pageScope.lightJokerBtnAdd.on('click', btnEvents.btnAddEvent);
             }
-            if(!isNull(pageScope.btnEdit)){
-                pageScope.btnEdit.unbind('click');
-                pageScope.btnEdit.on('click', btnEvents.btnEditEvent);
+            if(!isNull(pageScope.lightJokerBtnEdit)){
+                pageScope.lightJokerBtnEdit.unbind('click');
+                pageScope.lightJokerBtnEdit.on('click', btnEvents.btnEditEvent);
             }
-            if(!isNull(pageScope.btnSave)){
-                pageScope.btnSave.unbind('click');
-                pageScope.btnSave.on('click', btnEvents.btnSaveEvent);
+            if(!isNull(pageScope.lightJokerBtnSave)){
+                pageScope.lightJokerBtnSave.unbind('click');
+                pageScope.lightJokerBtnSave.on('click', btnEvents.btnSaveEvent);
             }
-            if(!isNull(pageScope.btnRead)){
-                pageScope.btnRead.unbind('click');
-                pageScope.btnRead.on('click', btnEvents.btnReadEvent);
+            if(!isNull(pageScope.lightJokerBtnRead)){
+                pageScope.lightJokerBtnRead.unbind('click');
+                pageScope.lightJokerBtnRead.on('click', btnEvents.btnReadEvent);
             }
-            if(!isNull(pageScope.btnDelete)){
-                pageScope.btnDelete.unbind('click');
-                pageScope.btnDelete.on('click', btnEvents.btnDeleteEvent);
+            if(!isNull(pageScope.lightJokerBtnDelete)){
+                pageScope.lightJokerBtnDelete.unbind('click');
+                pageScope.lightJokerBtnDelete.on('click', btnEvents.btnDeleteEvent);
             }
-            if(!isNull(pageScope.btnExpExcel)){
-                pageScope.btnExpExcel.unbind('click');
-                pageScope.btnExpExcel.on('click', btnEvents.btnExpExcelEvent);
+            if(!isNull(pageScope.lightJokerBtnExpExcel)){
+                pageScope.lightJokerBtnExpExcel.unbind('click');
+                pageScope.lightJokerBtnExpExcel.on('click', btnEvents.btnExpExcelEvent);
             }
-            if(!isNull(pageScope.btnClose)){
-                pageScope.btnClose.unbind('click');
-                pageScope.btnClose.on('click', btnEvents.btnCloseEvent);
+            if(!isNull(pageScope.lightJokerBtnClose)){
+                pageScope.lightJokerBtnClose.unbind('click');
+                pageScope.lightJokerBtnClose.on('click', btnEvents.btnCloseEvent);
             }
-            if(!isNull(pageScope.btnPrint)){
-                pageScope.btnPrint.unbind('click');
-                pageScope.btnPrint.on('click', btnEvents.btnPrintEvent);
+            if(!isNull(pageScope.lightJokerBtnPrint)){
+                pageScope.lightJokerBtnPrint.unbind('click');
+                pageScope.lightJokerBtnPrint.on('click', btnEvents.btnPrintEvent);
             }
         };
     }

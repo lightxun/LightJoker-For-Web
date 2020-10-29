@@ -194,7 +194,7 @@
             },
             base: function(options){
                 var defaults = $.extend(true, {
-                    skin: $.lightJokerLib.plugin.layer.skin,
+                    skin: ' layui-layer-prompt ' + $.lightJokerLib.plugin.layer.skin,
                     formType: 0,
                     title: '标题',
                     area: '',
@@ -300,7 +300,7 @@
                     skin: defaults.skin,
                     content: defaults.content,
                     icon: defaults.icon,
-                    anim: defatuls.anim,
+                    anim: defaults.anim,
                     time: defaults.time
                 }
 

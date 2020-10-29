@@ -1,0 +1,569 @@
+html,
+body{
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    font-family:'Microsoft YaHei' !important;
+}
+
+/*
+    skin-lightJoker - 全局
+*/
+.skin-lightJoker .radius-5{
+    border-radius: 5px;
+}
+.skin-lightJoker .box-shadow-5{
+    -moz-box-shadow:2px 2px 5px #333333;
+    -webkit-box-shadow:2px 2px 5px #333333;
+    box-shadow:2px 2px 5px #333333;
+}
+.skin-lightJoker .no-padding-left{
+    padding-left: 0px;
+}
+.skin-lightJoker .no-padding-right{
+    padding-right: 0px;
+}
+.skin-lightJoker .no-padding-horizontal{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.skin-lightJoker .no-padding-vertical{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+
+/*
+    skin-lightJoker - search-condition
+*/
+.skin-lightJoker .search-condition-item{
+
+}
+.skin-lightJoker .search-condition-item-label{
+    text-align: center;
+    width: 24%;
+    display: inline-block;
+}
+.skin-lightJoker .search-condition-item-control{
+    text-align: center;
+    width: 74%;
+    display: inline-block;
+}
+
+/*
+    skin-lightJoker - form-control
+*/
+.skin-lightJoker .form-control{
+    height: 27px;
+}
+.skin-lightJoker textarea.form-control{
+    height: auto;
+}
+
+/*
+    skin-lightJoker - date
+*/
+.skin-lightJoker .daterangepicker.dropdown-menu{
+    z-index :20000000;
+}
+/*
+    skin-light - light-date
+*/
+.skin-lightJoker .light-date,
+.skin-lightJoker .light-date-multiple{
+    text-align: center;
+}
+
+/*
+    skin-lightJoker - lightJokerContent
+*/
+.skin-lightJoker .lightJokerContent{
+    height: calc(100vh - 0px);
+    /*overflow: auto;*/
+    overflow-x: hidden;
+    padding: 10px;
+}
+.skin-lightJoker .lightJokerContent-view-body,
+.skin-lightJoker .lightJokerContent-edit-body{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.skin-lightJoker .lightJokerContent-edit-body-content{
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+/*
+    skin-lightJoker - btn
+*/
+.skin-lightJoker .btn{
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.skin-lightJoker .input-group-btn:last-child>.btn,
+.skin-lightJoker .input-group-btn:last-child>.btn-group{
+    height: 27px;
+    line-height: 10px;
+}
+.skin-lightJoker .btn-primary{
+    color: #fff;
+    background-color: #3c8dbc;
+    border-color: #367fa9;
+}
+.skin-lightJoker .btn-primary:focus{
+    color: #fff;
+    background-color: #286090;
+    border-color: #122b40;
+}
+.skin-lightJoker .btn-primary:hover,
+.skin-lightJoker .btn-primary:active{
+    color: #fff;
+    background-color: #367fa9;
+}
+
+/*
+    skin-lightJoker - bg
+*/
+.skin-lightJoker .bg-deep-green{
+    background-color: #006666;
+}
+.skin-lightJoker .bg-deep-blue{
+    background-color: #006699;
+}
+.skin-lightJoker .bg-deep-red{
+    background-color: #993333;
+}
+.skin-lightJoker .bg-deep-orange{
+    background-color: #FF9900;
+}
+.skin-lightJoker .bg-blue{
+    background-color: #0099CC;
+}
+.skin-lightJoker .bg-green{
+    background-color: #339966;
+}
+.skin-lightJoker .bg-red{
+    background-color: #996666;
+}
+.skin-lightJoker .bg-orange{
+    background-color: #F39C12;
+}
+
+/*
+    skin-lightJoker - font
+*/
+.skin-lightJoker .font-green{
+    color: #339966;
+}
+.skin-lightJoker .font-blue{
+    color: #0099CC;
+}
+.skin-lightJoker .font-red{
+    color: #993333;
+}
+.skin-lightJoker .font-redBold {
+    color: #993333;
+}
+
+/*
+    skin-lightJoker - select2
+*/
+.skin-lightJoker .select2-container--default .select2-selection--single .select2-selection__rendered,
+.skin-lightJoker .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    line-height: 21px;
+}
+.skin-lightJoker .select2-container--default .select2-selection--single,
+.skin-lightJoker .select2-container--default .select2-selection--multiple{
+    min-height: 27px;
+    height: 27px;
+    width: 100%;
+    margin: 0;
+}
+.skin-lightJoker .select2-container--default .select2-selection--single .select2-selection__arrow,
+.skin-lightJoker .select2-container--default .select2-selection--multiple .select2-selection__arrow{
+    height: 20px;
+}
+.skin-lightJoker .select2-container--default .select2-search .select2-search__field{
+    height: 27px;
+}
+.skin-lightJoker .select2-container--default .select2-results .select2-results__option{
+    padding: 4px 12px;
+}
+.skin-lightJoker .select2-container--default.select2-container--open{
+    z-index: 20000000;
+}
+.skin-lightJoker .select2-container--default .select2-selection--multiple .select2-selection__choice{
+    padding: 0 5px;
+    font-size: 12px;
+    margin-top: 1px;
+}
+.skin-lightJoker .select2-container .select2-search--inline .select2-search__field{
+    margin-top: 0;
+    padding: 6px;
+}
+
+/*
+    skin-lightJoker - pnotify
+
+*/
+.skin-lightJoker .ui-pnotify.light .ui-pnotify-container {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #333333;
+}
+.skin-lightJoker .ui-pnotify.light .ui-pnotify-title, .ui-pnotify.custom .ui-pnotify-text {
+    font-family: Arial, Helvetica, sans-serif !important;
+    /*text-shadow: 2px 2px 3px black !important;*/
+    font-size: 10pt !important;
+    color: #FFF !important;
+    /*padding-left: 50px !important;*/
+    padding-top: 2px !important;
+    padding-left: 20px !important;
+    line-height: 1 !important;
+    text-rendering: geometricPrecision !important;
+}
+.skin-lightJoker .ui-pnotify.light .ui-pnotify-title {
+    font-weight: bold;
+}
+.skin-lightJoker .ui-pnotify.light .ui-pnotify-icon {
+    float: left;
+}
+.skin-lightJoker .ui-pnotify.light .fa {
+    margin: 3px;
+    width: 33px;
+    height: 33px;
+    font-size: 33px;
+    color: #FF0;
+}
+
+/*
+    skin-lightJoker - sweetalert2
+    */
+.skin-lightJoker .swal2-modal{
+    border-radius: 10px;
+    border: 7px solid;
+    box-shadow: 2px 2px 10px #555;
+}
+.skin-lightJoker .swal2-modal .swal2-icon{
+    margin: 10px auto 20px;
+}
+.skin-lightJoker .swal2-modal .swal2-content{
+    letter-spacing: 1px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+.skin-lightJoker .swal2-modal .swal2-title{
+    letter-spacing: 2px;
+    font-size: 28px;
+}
+.skin-lightJoker .swal2-modal .swal2-styled{
+    margin: 15px 10px 0;
+    padding: 5px 18px;
+    letter-spacing: 3px;
+    border: 1px solid #555 !important;
+    font-size: 15px;
+}
+.skin-lightJoker .swal2-modal .swal2-input{
+    height: 25px;
+}
+.skin-lightJoker .swal2-modal .swal2-buttonswrapper{
+    margin-top: 5px;
+}
+
+/*
+    skin-lightJoker - qtip
+*/
+.skin-lightJoker .qtip{
+    max-width: 500px;
+    z-index: 20000000 !important;
+}
+.skin-lightJoker .qtip-color-green:after{
+    color: #339966;
+}
+.skin-lightJoker .qtip-color-orange:after{
+    color: #F39C12;
+}
+.skin-lightJoker .qtip-color-red:after{
+    color: #996666;
+}
+.skin-lightJoker tr[qtip] td:first-child:after{
+    font-family:'FontAwesome';
+    content: ' \f02b';
+    /*color: green;*/
+    position: relative;
+    right: -2px;
+    top: 1px;
+}
+
+/*
+
+    skin-lightJoker - form
+*/
+.skin-lightJoker input::-webkit-outer-spin-button,
+.skin-lightJoker input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+.skin-lightJoker input[type="number"]{
+    -moz-appearance:textfield;
+}
+.skin-lightJoker .input-group-addon{
+    padding: 0px 12px;
+}
+/*.skin-lightJoker form .form-group.has-error .select2[required] + i + span.select2-container span.select2-selection*/
+.skin-lightJoker form .form-group.has-error .select2[required] + span.select2-container span.select2-selection{
+    border-color: #dd4b39;
+    box-shadow: none;
+}
+
+/*.skin-lightJoker form .form-group.has-success .select2[required] + i + span.select2-container span.select2-selection*/
+.skin-lightJoker form .form-group.has-success .select2[required] + span.select2-container span.select2-selection{
+    border-color: #00a65a;
+    box-shadow: none;
+}
+
+.skin-lightJoker form input[required],
+.skin-lightJoker form select[required],
+.skin-lightJoker form select[required] + span.select2-container span.select2-selection
+{
+    background-color: #f2dede;
+}
+
+.skin-lightJoker form .form-control-feedback{
+    margin-right: 14px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+/*
+
+    skin-lightJoker - formTable
+*/
+.skin-lightJoker .formTable{
+    border-color: #fff;
+}
+.skin-lightJoker .formTable,
+.skin-lightJoker .formTable-subTable{
+    margin-bottom: 0;
+}
+.skin-lightJoker .formTable tbody td,
+.skin-lightJoker .formTable-subTable td,
+.skin-lightJoker .formTable-subTable th{
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #ccc !important;
+    height: 30px;
+}
+.skin-lightJoker .formTable .form-group,
+.skin-lightJoker .formTable-subTable .form-group{
+    min-height: 30px;
+    margin-bottom: 0px;
+}
+.skin-lightJoker .formTable-title{
+    font-size: 16px;
+    text-align: center;
+    border: 0px !important;
+}
+.skin-lightJoker .formTable-subTitle-left{
+    font-size: 12px;
+    text-align: left;
+    border: 0px !important;
+}
+.skin-lightJoker .formTable-subTitle-left input{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 140px;
+    text-align: center;
+}
+.skin-lightJoker .formTable-subTitle-right{
+    font-size: 12px;
+    text-align: right;
+    border: 0px !important;
+}
+.skin-lightJoker .formTable-subTitle-right input{
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 140px;
+    text-align: center;
+}
+.skin-lightJoker .formTable .form-control{
+    display: inline;
+}
+.skin-lightJoker .formTable-tip{
+    padding: 5px;
+    margin-right: 5px;
+    border: 1px solid #2e6da4;
+}
+.skin-lightJoker .formTable-row-1col tr td{
+    padding: 0px !important;
+}
+.skin-lightJoker .formTable-row-2col tr td:nth-of-type(2n+1){
+    width: 27%;
+    background-color: #f3f3f3;
+    white-space: nowrap;
+}
+.skin-lightJoker .formTable-row-2col tr td:nth-of-type(2n){
+    width: 73%;
+    padding: 0px !important;
+}
+.skin-lightJoker .formTable-row-4col tr td:nth-of-type(2n+1){
+    width: 17%;
+    background-color: #f3f3f3;
+    white-space: nowrap;
+}
+.skin-lightJoker .formTable-row-4col tr td:nth-of-type(2n){
+    width: 33%;
+    padding: 0px !important;
+}
+.skin-lightJoker .formTable-subTable input,
+.skin-lightJoker .formTable-subTable select{
+    padding-left: 10px;
+    width: 100%;
+    height: 30px;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+.skin-lightJoker .formTable-subTable textarea{
+    padding-left: 10px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+}
+.skin-lightJoker .formTable-subTable .select2-container--default .select2-selection--single,
+.skin-lightJoker .formTable-subTable .select2-selection .select2-selection--single{
+    height: 30px;
+    border: none;
+}
+.skin-lightJoker .formTable-subTable .select2-container--default .select2-selection--single .select2-selection__rendered{
+    line-height: 1.8;
+}
+.skin-lightJoker .formTable-subTable .select2-container--default .select2-selection--single .select2-selection__arrow{
+    top: 0px;
+}
+.skin-lightJoker .formTable-subTable .select2-container .select2-selection--multiple{
+    min-height:30px;
+    border:none;
+}
+.skin-lightJoker .formTable-subTable .combo-select {
+    margin-bottom: 0px;
+    border: none;
+}
+.skin-lightJoker .formTable-subTable .combo-select select{
+    width: 0;
+}
+.skin-lightJoker .formTable-subTable .combo-select input{
+    width: 100%;
+    background-color:#F2DEDE;
+    border-radius:0;
+}
+.skin-lightJoker .formTable-subTable select[required] + span.select2-container span.select2-selection{
+    background-color:#F2DEDE;
+}
+
+/*
+    skin-lightJoker - layer
+*/
+.skin-lightJoker .layui-layer{
+    box-shadow: 2px 2px 10px #555;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.skin-lightJoker .layui-layer .layui-layer-title{
+    border-radius: 10px 10px 0 0;
+}
+.skin-lightJoker .layui-layer-prompt .layui-layer-input{
+    height: 27px;
+}
+.skin-lightJoker .layui-layer-shade{
+    opacity: 0.5 !important;
+}
+.skin-lightJoker .layui-layer-content {
+    overflow: auto !important;
+    width: 100%;
+    max-height: 700px;
+    height: auto;
+}
+.skin-lightJoker .layui-layer-tabmain{
+    padding: 0;
+}
+.skin-lightJoker .layui-layer-tabmain .layui-layer-tabli{
+    list-style-type: none;
+}
+.skin-lightJoker .layui-layer-btn{
+    border-top: 1px solid #eee;
+    background-color: #f8f8f8;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 2px 12px 7px 12px !important;
+}
+.skin-lightJoker .layui-layer.layui-layer-dialog.layui-layer-border.layui-layer-lan{
+    z-index: 20200420 !important;
+}
+.skin-lightJoker .layui-layer.layui-layer-dialog.layui-layer-lan{
+    z-index: 20200420 !important;
+}
+.skin-lightJoker .layui-layer-setwin .layui-layer-close1 {
+    position: absolute;
+    right: -28px;
+    top: -28px;
+    width: 30px;
+    height: 30px;
+    margin-left: 0;
+    background-position: -149px -31px !important;
+}
+.skin-lightJoker .layui-layer-btn a, .layui-layer-dialog .layui-layer-ico, .layui-layer-setwin a {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: top;
+}
+
+/*
+
+    skin-lightJoker - jstree
+*/
+.skin-lightJoker .jstree-leaf .jstree-themeicon{
+    background-position: -100px -68px;
+}
+.skin-lightJoker .jstree-menu-folder{
+    background-image: url(../../Scripts/Plugins/jstree/v3.3.10/themes/default/32px.png);
+    background-position: -260px -4px !important;
+}
+.skin-lightJoker .jstree-menu{
+    background-image: url(../../Scripts/Plugins/jstree/v3.3.10/themes/default/32px.png);
+    background-position: -100px -68px !important;
+}
+.skin-lightJoker .jstree-menu-button{
+    background-image: url(../../Scripts/Plugins/jstree/v3.3.10/themes/default/32px.png);
+    background-position: -260px -36px !important;
+}
+
+
+
+
+/*
+    skin-lightJoker - media
+*/
+@media screen and (min-height: 800px){
+
+}
+@media screen and (max-height: 800px){
+    .skin-lightJoker .lightJokerContent-view-body{
+        height: calc(100vh - 0px) !important;
+    }
+}
+@media screen and (min-width: 768px){
+
+}
+@media screen and (max-width: 768px){
+    .skin-lightJoker .lightContent{
+        padding-top: 60px;
+    }
+}
+
